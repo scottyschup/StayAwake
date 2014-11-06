@@ -7,8 +7,11 @@ Setup instructions:
 * Copy the file "stayawake" into your /usr/bin directory, or wherever you like to keep custom scripts. (in Finder, this is a hidden folder in Macintosh HD)
 * Open a terminal window and navigate to that directory:
 > cd ~/../../usr/bin
+
 * Change the new file's mode to executable:
 > chmod +x stayawake
+
+* Give it a try!
 
 Usage:
 
