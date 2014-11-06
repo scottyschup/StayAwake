@@ -1,0 +1,52 @@
+#! /bin/sh
+
+function sleepoff {
+  sudo pmset -a displaysleep 0 sleep 0
+}
+
+function sleepon {
+  if [ $1 ]
+  then
+    if (( $1 < $2 ));
+    then
+      DISP=$1;
+      SLEEP=$2;
+    else
+      DISP=$2;
+      SLEEP=$1;
+    fi
+  else
+    DISP=5;
+    SLEEP=10;
+  fi
+  
+  sudo pmset -a displaysleep $DISP sleep $SLEEP
+}
+
+
+ORIG_SLEEP=`ruby -e 'p %x(pmset -g).split("\n")[12][22,2].to_i'`
+ORIG_DISP=`ruby -e 'p %x(pmset -g).split("\n")[17][22,2].to_i'`
+
+echo "---------------------------------------------------------------------------"
+sleepoff
+
+if [ $1 ]
+then
+  export T=`expr $1 \\* 60`
+else
+  export T=900
+fi
+
+ruby -e '
+time = ENV["T"].to_i
+start = Time.now.strftime("%T%p")
+finish = (Time.now + time).strftime("%T%p")
+puts "This StayAwake session started at #{start} and will finish at #{finish}."
+'
+echo "This shell tab will be unusable in the meantime, but it must remain open."
+
+sleep $T
+sleepon $ORIG_DISP $ORIG_SLEEP 
+
+echo "Sleep settings turned back on."
+echo "---------------------------------------------------------------------------"
