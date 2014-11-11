@@ -4,9 +4,17 @@ is a shell script that will temporarily disable your screensaver and sleep setti
 
 Setup instructions:
 
-* Copy the file "stayawake" into your /usr/bin directory, or wherever you like to keep custom scripts. (in Finder, this is a hidden folder in Macintosh HD)
+* Copy the file "stayawake" into your Home directory; the standard place is the bin directory in your Home directory (/Your-User-Name/bin). If this folder doesn't exist, create it.
 * Open a terminal window and navigate to that directory:
-> cd ~/../../usr/bin
+> cd ~Your-User-Name/bin
+
+* See if the directory you copied "stayawake" to is already in your PATH variable:
+> $PATH
+
+Note that paths are separated by a colon (:).
+
+* If the directory is not in the PATH variable, add it:
+> export PATH=$PATH:/Users/Your-User-Name/bin
 
 * Change the new file's mode to executable:
 > chmod +x stayawake
