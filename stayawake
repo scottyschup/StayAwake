@@ -5,22 +5,10 @@ function sleepoff {
 }
 
 function sleepon {
-  if [ $1 ]
-  then
-    if (( $1 < $2 ));
-    then
-      DISP=$1;
-      SLEEP=$2;
-    else
-      DISP=$2;
-      SLEEP=$1;
-    fi
-  else
-    DISP=5;
-    SLEEP=10;
-  fi
-  
-  sudo pmset -a displaysleep $DISP sleep $SLEEP
+	DISP=$1;
+	SLEEP=$2;
+	
+	sudo pmset -a displaysleep $DISP sleep $SLEEP
 }
 
 
