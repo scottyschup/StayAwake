@@ -5,10 +5,10 @@ function sleepoff {
 }
 
 function sleepon {
-	DISP=$1;
-	SLEEP=$2;
-	
-	sudo pmset -a displaysleep $DISP sleep $SLEEP
+  DISP=$1;
+  SLEEP=$2;
+
+  sudo pmset -a displaysleep $DISP sleep $SLEEP
 }
 
 
